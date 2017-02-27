@@ -178,4 +178,22 @@ public class RedisManage {
 			return jedis.lrange(key, 0, -1);
 		}
 	}
+
+	public void set(String key, String value) {
+		try (Jedis jedis = jedisPool.getResource()) {
+			jedis.set(key, value);
+		}
+	}
+
+	public boolean exist(String key) {
+		try (Jedis jedis = jedisPool.getResource()) {
+			return jedis.exists(key);
+		}
+	}
+
+	public void del(String key) {
+		try (Jedis jedis = jedisPool.getResource()) {
+			jedis.del(key);
+		}
+	}
 }
